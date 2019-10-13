@@ -1,6 +1,6 @@
 {
-    "name": "acmedinotech/kidstrack",
-    "description": "Platform for managing children, caregivers, and schools/organizations",
+    "name": "YOUR_COMPANY/YOUR_APP",
+    "description": "",
     "type": "project",
     "require": {
         "symfony/symfony": "^4.3"
@@ -10,8 +10,8 @@
     },
     "authors": [
         {
-            "name": "kaiser shahid",
-            "email": "kaisershahid@gmail.com"
+            "name": "YOUR_NAME",
+            "email": "YOUR_EMAIL"
         }
     ]
 }

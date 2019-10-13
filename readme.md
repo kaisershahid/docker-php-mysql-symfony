@@ -11,13 +11,16 @@ This project is a skeleton for quickly standing up a local HTTP and DB environme
 
 First, you'll need to get some local environment things out of the way:
 
-1. replace every instance of `YOUR_APP` with whatever your application name is. Use your favorite editor or run this command:
-    - `find ./ -type f -exec sed -i '' -e 's/YOUR_APP/actual-app-name/g' {} \;`
+1. use the setup script to copy core files to your project
+    - run `php setup.php -app app-name destination`
+        - `app-name` is the name of your app. this will be used for naming Docker project, host names, and a few other things
+        - `destination` is the path to your project
 2. review `_infrastructure/.env` and change variables as needed
     - make note of `APP_DEV_HTTP_HOST` and `APP_DEV_HTTP_PORT` -- you'll use those below
 3. install Docker
-    - `brew cask install docker`
+    - run `brew cask install docker`
 4. install DNSMasq (allows you to easily access `$domain.localhost`):
+    - run the following
     - ```
       brew install dnsmasq
       echo "address=/localhost/127.0.0.1" >> /usr/local/etc/dnsmasq.conf
@@ -28,11 +31,12 @@ First, you'll need to get some local environment things out of the way:
       sudo brew services start dnsmasq
       ```
 
-Last, execute these commands:
+Last, run these commands:
 
 1. `cd _infrastructure`
 2. `./build_image.sh db`
-3. `./build_image.sh http`
+3. `./build_image.sh http [version]`
+    - `version` is the PHP version to install. Default is `7.4`; `7.1, 7.2, 7.3` are other acceptable values
     - note that you might have to update composer's SHA -- just copy from https://getcomposer.org/download/
 4. `docker-compose up`
 
