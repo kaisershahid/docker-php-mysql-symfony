@@ -54,7 +54,7 @@ class Copier {
         echo "<< finished copying to {$this->dst}\n";
     }
 
-    const SKIP_ENTRIES = ['.', '..', '.git', '.idea', 'setup.php'];
+    const SKIP_ENTRIES = ['.', '..', '.git', '.idea', 'setup.php', 'readme.md'];
 
     public function processDir($src, $dst) {
         $dir = dir($src);
@@ -88,6 +88,8 @@ class Copier {
         } else {
             copy($srcPath, $dstPath);
         }
+
+        chmod($dstPath, fileperms($srcPath));
     }
 }
 

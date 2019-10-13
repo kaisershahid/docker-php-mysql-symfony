@@ -1,7 +1,7 @@
 This project is a skeleton for quickly standing up a local HTTP and DB environment through Docker:
 
 - HTTP has separate dev and test servers
-    - built on Apache and PHP 7.2
+    - built on Apache and PHP 7.3
     - application powered by Symfony 4.3
     - test suite powered by Codeception 3.1
 - DB has separate dev and test servers
@@ -17,9 +17,9 @@ First, you'll need to get some local environment things out of the way:
         - `destination` is the path to your project
 2. review `_infrastructure/.env` and change variables as needed
     - make note of `APP_DEV_HTTP_HOST` and `APP_DEV_HTTP_PORT` -- you'll use those below
-3. install Docker
+3. install Docker if you don't have it
     - run `brew cask install docker`
-4. install DNSMasq (allows you to easily access `$domain.localhost`):
+4. install DNSMasq (allows you to easily access `$domain.localhost`) if you don't have it:
     - run the following
     - ```
       brew install dnsmasq
@@ -36,11 +36,13 @@ Last, run these commands:
 1. `cd _infrastructure`
 2. `./build_image.sh db`
 3. `./build_image.sh http [version]`
-    - `version` is the PHP version to install. Default is `7.4`; `7.1, 7.2, 7.3` are other acceptable values
+    - `version` is the PHP version to install. Default is `7.3`; `7.1, 7.2` are other acceptable values (`7.4` files are present but not supported)
     - note that you might have to update composer's SHA -- just copy from https://getcomposer.org/download/
 4. `docker-compose up`
 
 If all goes well, you should be able to go to `http://${APP_DEV_HTTP_HOST}:${APP_DEV_HTTP_PORT}` and see your PHP settings. That's it! Now you can customize away.
+
+**NOTE**: once your project is customized, DO NOT re-run setup, since you may lose customizations.
 
 # Future
 

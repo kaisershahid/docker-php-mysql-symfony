@@ -4,19 +4,30 @@ IMAGES=docker
 
 print_usage() {
   echo '******'
-  echo "usage: ./build_image.sh type"
-  echo
-  echo "- type: http, db"
+  echo "usage:"
+  echo "- ./build_image.sh http [version]"
+  echo "- ./build_image.sh db"
   echo
 }
 
 build_http() {
-  echo "** building apache-php7 image"
+  ver='7.3'
+  case $1 in
+    7.[1-3])
+      set ver="$1"
+      ;;
+  esac
+
+  echo "** building apache-php($ver) image"
+
   rm -rf $IMAGES/.build
   mkdir $IMAGES/.build
-  cp -Rv $IMAGES/apache-php7/* $IMAGES/.build
+  cp -Rv $IMAGES/apache-php${ver}/* $IMAGES/.build
   cp ../composer.json $IMAGES/.build
-  docker build --tag=YOUR_APP_apache -f $IMAGES/apache-php7/Dockerfile $IMAGES/.build
+
+  docker build --tag=YOUR_APP_apache -f $IMAGES/apache-php${ver}/Dockerfile $IMAGES/.build
+
+  rm -rf $IMAGES/.build
 }
 
 build_db() {
@@ -26,7 +37,8 @@ build_db() {
 
 case $1 in
   'http')
-    build_http
+    shift
+    build_http $1
     ;;
   'db')
     build_db
