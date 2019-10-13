@@ -1,0 +1,17 @@
+{
+    "name": "acmedinotech/kidstrack",
+    "description": "Platform for managing children, caregivers, and schools/organizations",
+    "type": "project",
+    "require": {
+        "symfony/symfony": "^4.3"
+    },
+    "require-dev": {
+        "codeception/codeception": "^3.1"
+    },
+    "authors": [
+        {
+            "name": "kaiser shahid",
+            "email": "kaisershahid@gmail.com"
+        }
+    ]
+}

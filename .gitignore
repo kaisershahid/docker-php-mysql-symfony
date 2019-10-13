@@ -1,0 +1,8 @@
+_infrastructure/docker/.build
+
+.idea
+.db
+
+vendor
+var
+tmp
